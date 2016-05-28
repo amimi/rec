@@ -9,7 +9,7 @@ class Admin_Controller extends CI_Controller {
 	 * @param string $view ビュー名
 	 * @param string $content_data contentに表示するデータ
 	 */
-	function _render($view, $content_data = null)
+	protected function _render($view, $content_data = null)
 	{
 		// ヘッダー
 		$data["header"] = $this->load->view('admin/layouts/header', NULL, true);
