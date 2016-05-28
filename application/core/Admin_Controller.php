@@ -21,10 +21,10 @@ class Admin_Controller extends CI_Controller {
 		$data["content"] = $this->load->view('admin/'.$view, $content_data, true);
 		
 		// フッター
-		$data["menu"] = $this->load->view('admin/layouts/footer', NULL, true);
+		$data["footer"] = $this->load->view('admin/layouts/footer', NULL, true);
 		
 		// サイドバー
-		$data["menu"] = $this->load->view('admin/layouts/side', NULL, true);
+		$data["side"] = $this->load->view('admin/layouts/side', NULL, true);
 		
 		// bodyクラス
 
