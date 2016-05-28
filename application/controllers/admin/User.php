@@ -17,7 +17,7 @@ class User extends Admin_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('admin_user_model');
+		$this->load->model('admin_user');
 		$this->admin_user->get_all();
 		$this->_render('user');
 	}

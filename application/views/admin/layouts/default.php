@@ -53,6 +53,7 @@ desired effect
 -->
 <body class="hold-transition skin-<?php out($rec['skin']); ?> sidebar-mini">
 <div class="wrapper">
+<?php out(ENVIRONMENT);?>
 
   <?php echo $header; ?>
 
