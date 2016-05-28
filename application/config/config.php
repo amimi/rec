@@ -23,7 +23,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+// $config['base_url'] = '';
+$allowed_domains = array('rec.amilktea.com', 'rec.amilktea.localhost.com');
+$default_domain  = 'rec.amilktea.com';
+
+if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
+{
+	$domain = $_SERVER['HTTP_HOST'];
+}
+else
+{
+	$domain = $default_domain;
+}
+
+if ( ! empty($_SERVER['HTTPS']))
+{
+	$config['base_url'] = 'https://'.$domain;
+}
+else
+{
+	$config['base_url'] = 'http://'.$domain;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +334,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '3d9fc9d3e7028ebd3bd10ad2d408f9d5';
 
 /*
 |--------------------------------------------------------------------------

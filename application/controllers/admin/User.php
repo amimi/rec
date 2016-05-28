@@ -24,6 +24,30 @@ class User extends Admin_Controller {
 	
 	public function create()
 	{
+		$this->load->library('form_validation');
+		
+		if($this->input->post('submit'))
+		{
+			if($this->form_validation->run() == FALSE)
+			{
+				// バリデーションエラー
+			}
+			else
+			{
+				// DBインサート
+				if($this->admin_user_model->insert_admin_user())
+				{
+					// 成功
+					echo 'create success!';
+				}
+				else 
+				{
+					// 失敗
+					echo 'create failed.';
+				}
+			}
+		}
+		
 		$this->_render('user/create');
 	}
 }

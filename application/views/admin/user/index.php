@@ -25,9 +25,11 @@
 				<div class="box-body table-responsive no-padding">
 					<table class="table table-hover">
 						<tr>
-							<th></th>
-							<th></th>
+							<th>name</th>
+							<th>created at</th>
 						</tr>
+							<td><?php out($user['admin_name']); ?></td>
+							<td><?php out($user['created_at']); ?></td>
 					</table>
       			</div><!-- /.box-body -->
       		</div> <!-- /.box -->
