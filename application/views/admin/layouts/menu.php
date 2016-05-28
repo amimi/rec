@@ -35,8 +35,12 @@
         <li class="active">
         	<a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
-        <li class="active">
-        	<a href="/admin/user"><i class="fa fa-user"></i> <span>User</span></a>
+        <li class="treeview active">
+        	<a href="/admin/user"><i class="fa fa-user"></i> <span>User</span><i class="fa fa-angle-left pull-right"></i></a>
+          	<ul class="treeview-menu">
+            	<li><a href="/admin/user">User list</a></li>
+            	<li><a href="/admin/user/create">Create User</a></li>
+          </ul>
         </li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">

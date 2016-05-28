@@ -10,6 +10,7 @@ class User extends Admin_Controller {
 	
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('admin_user_model');
 	}
 
 	/**
@@ -17,8 +18,12 @@ class User extends Admin_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('admin_user');
-		$this->admin_user->get_all();
-		$this->_render('user');
+		$view_data['users'] = $this->admin_user_model->get_all();
+		$this->_render('user/index', $view_data);
+	}
+	
+	public function create()
+	{
+		$this->_render('user/create');
 	}
 }

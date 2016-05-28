@@ -3,13 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model {
 	
+	protected $table;
+	
 	public function __construct()
 	{
 		parent::__construct();
+		$this->table = rtrim(get_called_class(), '_model');
 	}
 	
 	public function get_all()
 	{
-		return $this->db->get()->result_array();
+		return $this->db->get($this->table)->result_array();
 	}
 }
