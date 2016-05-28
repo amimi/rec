@@ -2,6 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_Controller extends CI_Controller {
+	
+	/**
+	 * @var $admin_user
+	 */
+	var $admin_user;
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->config->load('rec');
+	}
 
 	/**
 	 * 共通レイアウトで画面表示する
@@ -35,6 +46,8 @@ class Admin_Controller extends CI_Controller {
 		// ページごとのjs
 		$page_js = '/assets/js/' . $this->router->fetch_class() . '.js';
 		$data['page_js'] = (file_exists(realpath(__DIR__.'/../..'.$page_js))) ? '<script type="text/javascript" src="'.$page_js.'"></script>' : '';
+		
+		$data['rec'] = $this->config->item('rec');
 		// 共通レイアウトで表示
 		$this->load->view('admin/layouts/default', $data);
 	}
