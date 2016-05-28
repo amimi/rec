@@ -10,6 +10,6 @@ class MY_Model extends CI_Model {
 	
 	public function get_all()
 	{
-		return $this->db-get()->result_array();
+		return $this->db->get()->result_array();
 	}
 }
