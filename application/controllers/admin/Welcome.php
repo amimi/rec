@@ -9,6 +9,6 @@ class Welcome extends Admin_Controller {
 	 */
 	public function index()
 	{
-		$this->load->_render('admin/index');
+		$this->_render('admin/index');
 	}
 }
