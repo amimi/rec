@@ -30,6 +30,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+<?php
+// ページごとの追加js
+if(!empty($add_css)) {
+	foreach($add_css as $css) {
+?>
+	<link rel="stylesheet" href="<?php out($css); ?>">
+<?php 
+	}
+}
+?>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -79,5 +89,20 @@ desired effect
      Both of these ../plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+<?php
+// ページごとの追加js
+if(!empty($add_js)) {
+	foreach($add_js as $js) {
+?>
+<script type="text/javascript" src="<?php out($js); ?>"></script>
+<?php 
+	}
+}
+?>
+
+<?php if($page_js) { // ページごとのjs ?>
+<script type="text/javascript" src="<?php out($page_js); ?>"></script>
+<?php } ?>
+
 </body>
 </html>

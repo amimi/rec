@@ -19,36 +19,36 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box">
-					<?php out(form_open_multipart('', ['class' => 'form-horizontal']), FALSE); ?>
+					<?php out(form_open('', ['class' => 'form-horizontal']), FALSE); ?>
 						<div class="box-header">
-							<h3 class="box-title">Create New User</h3>
+							<h3 class="box-title">Edit User</h3>
 						</div><!-- /.box-header -->
 						<div class="box-body">
-						<div class="form-group <?php out(has_error('login_id')); ?>">
+							<div class="form-group <?php out(has_error('login_id')); ?>">
 								<label class="col-sm-2 control-label" for="login_id">login id</label>
 								<div class="col-sm-10">
-									<?php out(form_input('login_id', set_value('login_id'), ['id' => 'login_id', 'class' => 'form-control', 'placeholder' => 'login id']), FALSE); ?>
+									<?php out(form_input('login_id', set_value('login_id', $user['login_id']), ['id' => 'login_id', 'class' => 'form-control', 'placeholder' => 'login id']), FALSE); ?>
 									<?php out(form_error('login_id'), FALSE); ?>
 								</div><!-- /.col-sm-10 -->
 							</div><!-- /.form-group -->
 							<div class="form-group <?php out(has_error('password')); ?>">
 								<label class="col-sm-2 control-label" for="password">password</label>
 								<div class="col-sm-10">
-									<?php out(form_password('password', set_value('password'), ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'password']), FALSE); ?>
+									<?php out(form_password('password', set_value('password', $user['password']), ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'password']), FALSE); ?>
 									<?php out(form_error('password'), FALSE); ?>
 								</div><!-- /.col-sm-10 -->
 							</div><!-- /.form-group -->
 							<div class="form-group <?php out(has_error('admin_name')); ?>">
 								<label class="col-sm-2 control-label" for="admin_name">name</label>
 								<div class="col-sm-10">
-									<?php out(form_input('admin_name', set_value('admin_name'), ['id' => 'admin_name', 'class' => 'form-control', 'placeholder' => 'name']), FALSE); ?>
+									<?php out(form_input('admin_name', set_value('admin_name', $user['admin_name']), ['id' => 'admin_name', 'class' => 'form-control', 'placeholder' => 'name']), FALSE); ?>
 									<?php out(form_error('admin_name'), FALSE); ?>
 								</div><!-- /.col-sm-10 -->
 							</div><!-- /.form-group -->
 							<div class="form-group <?php out(has_error('image')); ?>">
 								<label class="col-sm-2 control-label" for="image">image</label>
 								<div class="col-sm-10">
-									<?php out(form_upload('image', set_value('image'), ['id' => 'image', 'class' => '']), FALSE); ?>
+									<?php out(form_input('image', set_value('image', $user['image']), ['id' => 'image', 'class' => 'form-control', 'placeholder' => 'image']), FALSE); ?>
 									<?php out(form_error('image'), FALSE); ?>
 								</div><!-- /.col-sm-10 -->
 							</div><!-- /.form-group -->

@@ -2,15 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(APPPATH . 'core/Admin_Controller.php');
 /**
- * ユーザー管理
+ * 投稿管理
  * @author Ami
  *
  */
-class User extends Admin_Controller {
+class Record extends Admin_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('admin_user_model');
+		$this->load->model('record_model');
 	}
 
 	/**
@@ -18,12 +18,12 @@ class User extends Admin_Controller {
 	 */
 	public function index()
 	{
-		$view_data['users'] = $this->admin_user_model->get_all();
-		$this->_render('user/index', $view_data);
+		$view_data['records'] = $this->record_model->get_all();
+		$this->_render('record/index', $view_data);
 	}
 	
 	/**
-	 * 新規ユーザー作成
+	 * 新規投稿作成
 	 */
 	public function create()
 	{
@@ -37,6 +37,7 @@ class User extends Admin_Controller {
 			else
 			{
 				$data = $this->input->post();
+				
 				if(0 < $_FILES['image']['size'])
 				{
 					$config['upload_path']          = Rec_Constant::ADMIN_USER_IMAGE_PATH;
@@ -46,7 +47,7 @@ class User extends Admin_Controller {
 					{
 						$error = array('error' => $this->upload->display_errors());
 						$this->set_alert($error['error'], Rec_Constant::MSG_DANGER);
-						$this->_render('user/create');
+						$this->_render('record/create');
 						exit();
 					}
 					else
@@ -55,7 +56,7 @@ class User extends Admin_Controller {
 					}
 				}
 				// DBインサート
-				if($this->admin_user_model->insert_admin_user($data))
+				if($this->record_model->insert_admin_user($data))
 				{
 					// 成功
 					$this->set_alert('create success.', Rec_Constant::MSG_INFO);
@@ -68,7 +69,7 @@ class User extends Admin_Controller {
 			}
 		}
 		
-		$this->_render('user/create');
+		$this->_render('record/create');
 	}
 
 	/**

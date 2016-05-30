@@ -1,7 +1,8 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteCond $1 !^(index\.php|admin|img)
+RewriteRule ^(.*)$ /index.php/$1 [L]
 
 RewriteCond $1 ^admin
 RewriteCond $1 !^(admin_index\.php)

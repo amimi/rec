@@ -163,11 +163,11 @@ function out_for_billing_status($status, $data, $finalized, $return = FALSE)
 }
 
 /**
- * スタッフ画像のパスを返す
+ * 管理者画像のパスを返す
  * @param string $str
  * @return string
  */
-function staff_image($str)
+function admin_image($str)
 {
 	$protocol = is_https() ? 'https' : 'http';
 	
@@ -175,7 +175,7 @@ function staff_image($str)
 	{
 		return site_url('/assets/img/staff_nophoto.png', $protocol);
 	}
-	return site_url('/img/uploaded/staffs/' . $str, $protocol);
+	return site_url(Rec_Constant::ADMIN_USER_IMAGE_PATH . $str, $protocol);
 }
 
 /**
@@ -374,17 +374,29 @@ function is_logged_in_toukatsu()
 }
 
 /**
- * 統括管理から店舗管理へログイン中かどうか
+ * 管理メニューのクラスを返す
+ * @param string $class
+ * @return string
  */
-function is_logged_in_sudo()
+function admin_menu_class($class)
 {
 	$CI = &get_instance();
-	$login_staff = $CI->auth->get_login_staff();
-	if (isset($login_staff['is_sudo']) && $login_staff['is_sudo'])
+	return $class == $CI->router->fetch_class() ? 'active' : ''; 
+}
+
+/**
+ * エラークラスを返す
+ * @param string $field
+ * @return string
+ */
+function has_error($field = '')
+{
+	if (FALSE === ($OBJ =& _get_validation_object()))
 	{
-		return is_logged_in_tenpo();
+		return '';
 	}
-	return FALSE;
+	$error_array = $OBJ->error_array();
+	return array_key_exists($field, $error_array) ? 'has-error' : '';
 }
 
 /**

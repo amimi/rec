@@ -13,3 +13,4 @@ composer.phar
 application/logs/
 application/config/development/database.php
 application/config/production/database.php
+public/img/user/*
