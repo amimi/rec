@@ -481,7 +481,7 @@ function pre_var_dump($expression)
  * @param	string	the error message
  * @return	void
  */
-function debug_message($message)
+function debug($message)
 {
 	static $_log;
 

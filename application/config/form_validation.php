@@ -11,7 +11,7 @@ $config = [
 	
 	// 投稿作成
 	'admin/record/create' => [
-		['field' => 'image', 'label' => 'comment', 'rules' => 'required|max_length[100]'],
+// 		['field' => 'image', 'label' => 'image', 'rules' => 'required|max_length[100]'],
 		['field' => 'comment', 'label' => 'comment', 'rules' => 'max_length[200]'],
 		['field' => 'published_flag', 'label' => 'published flag', 'rules' => 'integer'],
 		['field' => 'published_at', 'label' => 'published at', 'rules' => '']

@@ -29,7 +29,6 @@ class Login extends Admin_Controller {
 			}
 			else
 			{
-				$view_data['users'] = $this->admin_user_model->get_all();
 				if(!$user = $this->admin_user_model->get_by_id($this->input->post('login_id'), 'login_id'))
 				{
 					// login id が存在しない

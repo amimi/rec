@@ -70,7 +70,7 @@ class Admin_Controller extends CI_Controller {
 	 * @param string $message
 	 * @param int $type
 	 */
-	public function set_alert($message, $type)
+	public function set_alert($message, $type = Rec_Constant::MSG_INFO)
 	{
 		$this->session->set_flashdata('alert_message', ['message' => $message, 'type' => $type]);
 	}

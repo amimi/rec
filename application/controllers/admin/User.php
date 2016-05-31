@@ -39,13 +39,12 @@ class User extends Admin_Controller {
 				$data = $this->input->post();
 				if(0 < $_FILES['image']['size'])
 				{
-					$config['upload_path']          = Rec_Constant::ADMIN_USER_IMAGE_PATH;
-					$config['allowed_types']        = 'gif|jpg|png';
+					$config['upload_path'] = Rec_Constant::ADMIN_USER_IMAGE_PATH;
+					$config['allowed_types']  = 'gif|jpg|png';
 					$this->load->library('upload', $config);
 					if(!$this->upload->do_upload('image'))
 					{
-						$error = array('error' => $this->upload->display_errors());
-						$this->set_alert($error['error'], Rec_Constant::MSG_DANGER);
+						$this->set_alert($this->upload->display_errors(), Rec_Constant::MSG_DANGER);
 						$this->_render('user/create');
 						exit();
 					}

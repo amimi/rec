@@ -40,23 +40,26 @@ class Record extends Admin_Controller {
 				
 				if(0 < $_FILES['image']['size'])
 				{
-					$config['upload_path']          = Rec_Constant::ADMIN_USER_IMAGE_PATH;
-					$config['allowed_types']        = 'gif|jpg|png';
+					$config['upload_path'] = Rec_Constant::RECORD_IMAGE_PATH;
+					$config['allowed_types'] = 'gif|jpg|png';
 					$this->load->library('upload', $config);
+					// 画像アップロード
 					if(!$this->upload->do_upload('image'))
 					{
-						$error = array('error' => $this->upload->display_errors());
-						$this->set_alert($error['error'], Rec_Constant::MSG_DANGER);
+						$this->set_alert($this->upload->display_errors(), Rec_Constant::MSG_DANGER);
 						$this->_render('record/create');
-						exit();
+						exit(1);
 					}
 					else
 					{
+						// 画像名セット
 						$data['image'] = $this->upload->data('file_name');
 					}
 				}
+				
+				pre_var_dump($data);
 				// DBインサート
-				if($this->record_model->insert_admin_user($data))
+				if($this->record_model->insert($data))
 				{
 					// 成功
 					$this->set_alert('create success.', Rec_Constant::MSG_INFO);

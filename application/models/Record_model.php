@@ -18,8 +18,14 @@ class Record_model extends MY_Model {
 	/**
 	 * ユーザー新規作成
 	 */
-	public function insert_admin_user($data)
+	public function insert($data)
 	{
+		$this->image = $data['image'];
+		$this->comment = $data['comment'];
+		$this->published_flag = $data['published_flag'];
+		$this->published_at = $data['published_at'];
+		
+		return $this->insert($this);
 	}
 
 }
