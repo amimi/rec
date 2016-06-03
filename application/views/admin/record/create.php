@@ -2,7 +2,6 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<?php out($alert_message, FALSE); ?>
 		<h1>
 			Record
 			<small>Optional description</small>
@@ -15,6 +14,7 @@
 
 	<!-- Main content -->
 	<section class="content">
+		<?php out($alert_message, FALSE); ?>
 		<!-- Your Page Content Here -->
 		<div class="row">
 			<div class="col-xs-12">
@@ -41,8 +41,34 @@
 							<div class="form-group <?php out(has_error('published_flag')); ?>">
 								<label class="col-sm-2 control-label" for="published_flag">published flag</label>
 								<div class="col-sm-10">
-									<?php out(form_checkbox('published_flag', 1, set_checkbox('published_flag', 1, TRUE) , ['id' => 'published_flag', 'class' => 'form-control']), FALSE); ?>
+									<?php out(form_checkbox('published_flag', 1, set_checkbox('published_flag', 1, TRUE) , ['id' => 'published_flag']), FALSE); ?>
 									<?php out(form_error('published_flag'), FALSE); ?>
+								</div><!-- /.col-sm-10 -->
+							</div><!-- /.form-group -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">categories</label>
+								<div class="col-sm-10">
+								<?php if($categories) { ?>
+									<?php foreach ($categories as $category) { ?>
+										<label>
+											<?php out(form_checkbox('categories[]', $category['id'], set_checkbox('categories[]', $category['id'])), FALSE); ?>
+											<?php out($category['category_name']); ?>
+										</label>
+									<?php } ?>
+								<?php } ?>
+								</div><!-- /.col-sm-10 -->
+							</div><!-- /.form-group -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">categories</label>
+								<div class="col-sm-10">
+								<?php if($tags) { ?>
+									<?php foreach ($tags as $tag) { ?>
+										<label>
+											<?php out(form_checkbox('tags[]', $tag['id'], set_checkbox('tags[]', $tag['id'])), FALSE); ?>
+											<?php out($tag['tag_name']); ?>
+										</label>
+									<?php } ?>
+								<?php } ?>
 								</div><!-- /.col-sm-10 -->
 							</div><!-- /.form-group -->
 							<div class="form-group <?php out(has_error('published_at')); ?>">

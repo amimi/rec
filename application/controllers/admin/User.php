@@ -53,8 +53,13 @@ class User extends Admin_Controller {
 						$data['image'] = $this->upload->data('file_name');
 					}
 				}
+				
+				// password 暗号化 
+				$this->load->library('encrypt');
+				$data['password'] = $this->encrypt->encode($data['password']);
+				
 				// DBインサート
-				if($this->admin_user_model->insert_admin_user($data))
+				if($this->admin_user_model->insert($data))
 				{
 					// 成功
 					$this->set_alert('create success.', Rec_Constant::MSG_INFO);

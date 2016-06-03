@@ -24,7 +24,7 @@ CREATE TABLE `record` (
 	`id`				int NOT NULL AUTO_INCREMENT					COMMENT 'ID',
 	`image`				varchar(100) NOT NULL						COMMENT '画像',
 	`comment`			varchar(200)								COMMENT 'コメント',
-	`published_flag`	TINYINT(1) default 1						COMMENT '公開フラグ',
+	`published_flag`	TINYINT(1) default 0						COMMENT '公開フラグ',
 	`deleted_flag`		TINYINT(1) default 0						COMMENT '削除フラグ',
 	`published_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP	COMMENT '公開日時',
 	`created_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP	COMMENT '作成日時',
@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
 	`id`				int NOT NULL AUTO_INCREMENT					COMMENT 'ID',
 	`category_name`		varchar(100) NOT NULL						COMMENT '名前',
-	`slang`				varchar(100)								COMMENT 'スラング',
+	`segment`			varchar(20)									COMMENT 'セグメント',
 	`deleted_flag`		TINYINT(1) default 0						COMMENT '削除フラグ',
 	`created_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP	COMMENT '作成日時',
 	`updated_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP	COMMENT '更新日時',
@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
 	`id`				int NOT NULL AUTO_INCREMENT					COMMENT 'ID',
 	`tag_name`			varchar(100) NOT NULL						COMMENT '名前',
-	`slang`				varchar(100)								COMMENT 'スラング',
+	`segment`			varchar(20)									COMMENT 'セグメント',
 	`deleted_flag`		TINYINT(1) default 0						COMMENT '削除フラグ',
 	`created_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP	COMMENT '作成日時',
 	`updated_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP	COMMENT '更新日時',
@@ -79,3 +79,13 @@ CREATE TABLE `rel_record_tag` (
 	`updated_at`		DATETIME NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP	COMMENT '更新日時',
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='投稿タグ';
+
+-- session
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+	`id` varchar(40) NOT NULL,
+	`ip_address` varchar(45) NOT NULL,
+	`timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+	`data` blob NOT NULL,
+	KEY `ci_sessions_timestamp` (`timestamp`),
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='CI session用';

@@ -1,13 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Record_model extends MY_Model {
+class Category_model extends MY_Model {
 	
-	public $image;
-	public $comment;
-	public $published_flag;
+	public $category_name;
+	public $segment;
 	public $deleted_flag;
-	public $published_at;
 	
 	public function __construct()
 	{

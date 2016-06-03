@@ -15,21 +15,6 @@ class Admin_user_model extends MY_Model {
 	}
 	
 	/**
-	 * ユーザー新規作成
-	 */
-	public function insert_admin_user($data)
-	{
-		$this->load->library('encrypt');
-		
-		$this->login_id = $data['login_id'];
-		$this->password = $this->encrypt->encode($data['password']);
-		$this->admin_name = $data['admin_name'];
-		$this->image = $data['image'];
-		
-		return $this->insert($this);
-	}
-	
-	/**
 	 * 最終ログイン日時を更新
 	 * @param int $id
 	 */

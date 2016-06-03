@@ -112,57 +112,6 @@ function out_built_years($ym, $return = FALSE)
 }
 
 /**
- * 駐車場フラグから駐車場あり|なしの文字列を出力する
- * @param unknown $parking_flag
- */
-function out_parking($parking_flag, $return = FALSE)
-{
-	$str = '駐車場';
-	if($parking_flag)
-	{
-		$str .= 'あり';
-	}
-	else
-	{
-		$str .= 'なし';
-	}
-
-	if($return)
-	{
-		return $str;
-	}
-	out($str);
-}
-
-/**
- * 請求ステータスに応じて値を出力する
- *
- * @param int $status 請求情報のステータス
- * @param mixin $data 未確定時に表示する値
- * @param mixin $finalized 確定時に表示する値
- * @param bool $return 戻り値として出力する値を返すかどうか
- */
-function out_for_billing_status($status, $data, $finalized, $return = FALSE)
-{
-	$str = NULL;
-
-	if (MY_constant::BILLING_STATUS_UNSETTLED === (int)$status)
-	{
-		$str = $data;
-	}
-	if (MY_constant::BILLING_STATUS_SETTLED === (int)$status)
-	{
-		$str = $finalized;
-	}
-
-	if ($return)
-	{
-		return $str;
-	}
-	out($str);
-}
-
-/**
  * 管理者画像のパスを返す
  * @param string $str
  * @return string
@@ -173,10 +122,28 @@ function admin_image($str)
 	
 	if(empty($str))
 	{
-		return site_url('/assets/img/staff_nophoto.png', $protocol);
+		return 'http://placehold.it/150x100';
+// 		return site_url('/assets/img/staff_nophoto.png', $protocol);
 	}
 	return site_url(Rec_Constant::ADMIN_USER_IMAGE_PATH . $str, $protocol);
 }
+
+/**
+ * 投稿画像のパスを返す
+ * @param string $str
+ * @return string
+ */
+function record_image($str)
+{
+	$protocol = is_https() ? 'https' : 'http';
+	
+	if(empty($str) || TRUE)
+	{
+		return 'http://placehold.it/150x150';
+// 		return site_url('/assets/img/staff_nophoto.png', $protocol);
+	}
+	return site_url(Rec_Constant::RECORD_IMAGE_PATH . $str, $protocol);
+} 
 
 /**
  * グループ画像のパスを返す
@@ -221,44 +188,14 @@ function estate_image($branch_id, $str)
 }
 
 /**
- * お客様画像のパスを返す
- * @param string|int $str
- * @return string
+ * DBから取得したdatetimeをフォーマットして返す
+ * @param string $datetime
+ * @param string $format
  */
-function customer_image($str)
+function dformat($datetime, $format)
 {
-	if(empty($str))
-	{
-		return '';
-	}
-	
-	$protocol = is_https() ? 'https' : 'http';
-	
-	if(is_numeric($str))
-	{
-		$CI = &get_instance();
-		$CI->load->model('customer_icon_master_model');
-		$image = $CI->customer_icon_master_model->get_key_value()[$str];
-		return site_url('/assets/img/customer_icons/' . $image, $protocol);
-	}
-	return site_url('/img/uploaded/customers/' . $str, $protocol);
-}
-
-/**
- * チャットメッセージの画像パスを返す
- * @param string $str
- * @return string
- */
-function chats_image($str)
-{
-	if(empty($str))
-	{
-		return '';
-	}
-	
-	$protocol = is_https() ? 'https' : 'http';
-	
-	return site_url('/img/uploaded/chats/' . $str, $protocol);
+	$date = new DateTime($datetime);
+	return $date->format($format);
 }
 
 /**
@@ -376,11 +313,16 @@ function is_logged_in_toukatsu()
 /**
  * 管理メニューのクラスを返す
  * @param string $class
+ * @param string $method
  * @return string
  */
-function admin_menu_class($class)
+function admin_menu_class($class, $method = NULL)
 {
 	$CI = &get_instance();
+	if(!is_null($method))
+	{
+		$class == $CI->router->fetch_class() && $method == $CI->router->fetch_method() ? 'active' : '';
+	}
 	return $class == $CI->router->fetch_class() ? 'active' : ''; 
 }
 

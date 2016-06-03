@@ -38,26 +38,32 @@
         <li class="treeview <?php out(admin_menu_class('record'));?>">
         	<a href="/admin/record"><i class="fa fa-book"></i> <span>Record</span><i class="fa fa-angle-left pull-right"></i></a>
           	<ul class="treeview-menu">
-            	<li><a href="/admin/record">Record List</a></li>
-            	<li><a href="/admin/record/create">Create Record</a></li>
+            	<li class="<?php out(admin_menu_class('record', 'index'));?>">
+            		<a href="/admin/record"><i class="fa fa-circle-o"></i>Record List</a>
+            	</li>
+            	<li class="<?php out(admin_menu_class('record', 'create'));?>">
+            		<a href="/admin/record/create"><i class="fa fa-circle-o"></i>Create Record</a>
+            	</li>
           </ul>
+        </li>
+        <li class="treeview <?php out(admin_menu_class('category'));?>">
+        	<a href="/admin/category"><i class="fa fa-folder-o"></i> <span>Category</span></a>
+        </li>
+        <li class="treeview <?php out(admin_menu_class('tag'));?>">
+        	<a href="/admin/tag"><i class="fa fa-tag"></i> <span>Tag</span></a>
         </li>
         <li class="treeview <?php out(admin_menu_class('user'));?>">
         	<a href="/admin/user"><i class="fa fa-user"></i> <span>User</span><i class="fa fa-angle-left pull-right"></i></a>
           	<ul class="treeview-menu">
-            	<li><a href="/admin/user">User List</a></li>
-            	<li><a href="/admin/user/create">Create User</a></li>
+            	<li class="<?php out(admin_menu_class('user', 'index'));?>">
+            		<a href="/admin/user"><i class="fa fa-circle-o"></i>User List</a>
+            	</li>
+            	<li class="<?php out(admin_menu_class('user', 'create'));?>">
+            		<a href="/admin/user/create"><i class="fa fa-circle-o"></i>Create User</a>
+            	</li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+        </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

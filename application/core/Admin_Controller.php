@@ -34,7 +34,12 @@ class Admin_Controller extends CI_Controller {
 	 */
 	protected function _render($view, $content_data = null)
 	{
+		$data['rec'] = $this->config->item('rec');
+		
 		$content_data['login_user'] = $this->session->login_user;
+		$content_data['body_class'] = $this->router->fetch_class().'-'.$this->router->fetch_method();
+		$content_data['rec'] = $data['rec'];
+		
 		// ヘッダー
 		$data["header"] = $this->load->view('admin/layouts/header', $content_data, true);
 
@@ -60,7 +65,6 @@ class Admin_Controller extends CI_Controller {
 		$page_js = '/assets/dist/js/pages/' . $this->router->fetch_class() . '.js';
 		$data['page_js'] = (file_exists(realpath(__DIR__.'/../..'.$page_js))) ? $page_js : NULL;
 		
-		$data['rec'] = $this->config->item('rec');
 		// 共通レイアウトで表示
 		$this->load->view('admin/layouts/default', $data);
 	}
@@ -68,7 +72,7 @@ class Admin_Controller extends CI_Controller {
 	/**
 	 * フラッシュメッセージをセットする
 	 * @param string $message
-	 * @param int $type
+	 * @param string $type
 	 */
 	public function set_alert($message, $type = Rec_Constant::MSG_INFO)
 	{
@@ -101,8 +105,9 @@ class Admin_Controller extends CI_Controller {
 					$icon = '';
 			}
 			$html = '<div class="alert alert-'.$alert['type'].' alert-dismissible">
-                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                <h4><i class="icon fa '.$icon.'"></i>' . $alert['message'] . '</h4>
+								<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <h4><i class="icon fa '.$icon.'"></i>' . $alert['type'] . '</h4>
+                <p>'.$alert['message'].'</p>
              </div>';
 			return $html;
 		}
