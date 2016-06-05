@@ -14,7 +14,7 @@ class MY_Model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table = str_replace('_model', '', get_called_class());
+		$this->table = str_replace('_model', '', mb_strtolower(get_called_class()));
 	}
 	
 	/**
