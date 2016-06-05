@@ -11,6 +11,7 @@ class Admin_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		debug(['ADMIN' => ADMIN]);
 		
 		// ログインチェック
 		if($this->router->fetch_class() != 'login' && !$this->is_logged_in())

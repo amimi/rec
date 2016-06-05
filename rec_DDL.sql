@@ -89,3 +89,4 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 	KEY `ci_sessions_timestamp` (`timestamp`),
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='CI session用';
+
